@@ -1,7 +1,10 @@
 import os
 import pandas as pd
+import logging
 from entities.lector import LectorCSV, LectorTXT, LectorJSON
 from entities.aeropuerto import Aeropuerto
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
 def preprocesa_data(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame) -> pd.DataFrame:
     df = pd.concat([df1, df2, df3], ignore_index=True)
@@ -15,6 +18,8 @@ class Main:
         self.ejecuta()
 
     def ejecuta(self):
+        logging.info("Iniciando lectura de archivos de vuelos...")
+
         lector_txt = LectorTXT(os.path.join("data", "vuelos_1.txt"))
         lector_csv = LectorCSV(os.path.join("data", "vuelos_2.csv"))
         lector_json = LectorJSON(os.path.join("data", "vuelos_3.json"))
@@ -39,10 +44,13 @@ class Main:
 
         if not all(isinstance(df, pd.DataFrame) for df in [df1, df2, df3]):
             print("Error en lectura de archivos.")
+            logging.error("Error en lectura de archivos.")
             return
 
+        logging.info("Preprocesando datos...")
         df_vuelos = preprocesa_data(df1, df2, df3)
 
+        logging.info("Asignando slots en el aeropuerto...")
         aeropuerto = Aeropuerto(
             vuelos=df_vuelos,
             slots=5,
@@ -50,8 +58,10 @@ class Main:
             t_embarque_internat=45
         )
         aeropuerto.asigna_slots()
+
         for _, fila in aeropuerto.df_vuelos.iterrows():
-            print(f"El vuelo {fila['id']} con fecha de llegada {fila['fecha_llegada']} y fecha de despegue {fila['fecha_despegue']} ha sido asignado al slot {fila['slot']}")
+            logging.info(f"Vuelo {fila['id']} llega {fila['fecha_llegada']} y despega {fila['fecha_despegue']} asignado al slot {fila['slot']}")
 
 if __name__ == '__main__':
     Main()
+    
