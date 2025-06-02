@@ -1,0 +1,34 @@
+[
+  {
+    "id": "VY1606",
+    "fecha_llegada": "08/05/2022 11:15",
+    "fecha_despegue": "08/06/2022 12:15",
+    "retraso": "-",
+    "tipo_vuelo": "INTERNAT",
+    "destino": "Beijing"
+  },
+  {
+    "id": "VY2650",
+    "fecha_llegada": "08/05/2022 20:30",
+    "fecha_despegue": "08/06/2022 21:30",
+    "retraso": "00:05",
+    "tipo_vuelo": "NAT",
+    "destino": "Marrakech"
+  },
+  {
+    "id": "VY1415",
+    "fecha_llegada": "08/05/2022 12:10",
+    "fecha_despegue": "08/06/2022 13:10",
+    "retraso": "-",
+    "tipo_vuelo": "NAT",
+    "destino": "Florencia"
+  },
+  {
+    "id": "VY6611",
+    "fecha_llegada": "08/05/2022 13:45",
+    "fecha_despegue": "08/06/2022 14:45",
+    "retraso": "-",
+    "tipo_vuelo": "NAT",
+    "destino": "Lisboa"
+  }
+]
